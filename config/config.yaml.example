@@ -1,0 +1,44 @@
+musicbee:
+  library_path: /music/musicbee/library
+  library_xml: /music/musicbee/Library.xml
+  playlists_path: /music/musicbee/Playlists
+
+dap:
+  ip_address: 192.168.1.100
+  port: 5555
+  music_path: /sdcard/Music
+  adb_path: /usr/bin/adb
+
+sync:
+  mode: incremental  # incremental or full
+  criteria:
+    - entire_library: true
+    - playlists: ["Favorites", "Recently Added"]
+    - smart_playlists:
+        - name: "High Rated"
+          rating_min: 4
+        - name: "Recent"
+          days: 30
+    - custom:
+        genres: ["Rock", "Jazz"]
+        date_added_after: "2024-01-01"
+
+metadata:
+  preserve_tags: true
+  embed_artwork: true
+  artwork_size: 1000  # max dimension in pixels
+
+schedule:
+  enabled: true
+  time: "02:00"  # Daily sync time (HH:MM)
+  timezone: "UTC"
+
+logging:
+  level: INFO
+  file: /logs/sync.log
+  max_size_mb: 100
+  backup_count: 10
+
+database:
+  path: /app/data/sync.db
+

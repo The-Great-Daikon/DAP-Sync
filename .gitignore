@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Logs
+logs/*.log
+logs/*.log.*
+
+# Data
+data/*.db
+data/*.db-journal
+
+# Configuration (user-specific)
+config/config.yaml
+config/sync-rules.yaml
+
+# Docker
+.dockerignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+

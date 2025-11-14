@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  dap-sync:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dap-sync
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      # MusicBee library (read-only)
+      - /path/to/musicbee/library:/music/musicbee/library:ro
+      - /path/to/musicbee/Library.xml:/music/musicbee/Library.xml:ro
+      - /path/to/musicbee/Playlists:/music/musicbee/Playlists:ro
+      # Configuration
+      - ./config:/app/config:ro
+      - ./config/config.yaml:/app/config/config.yaml:rw
+      # Logs
+      - ./logs:/logs:rw
+      # Data (sync database)
+      - ./data:/app/data:rw
+    environment:
+      - CONFIG_PATH=/app/config/config.yaml
+      - SYNC_RULES_PATH=/app/config/sync-rules.yaml
+      - LOG_LEVEL=INFO
+      - DRY_RUN=false
+      - INITIAL_SYNC=false
+      - KEEP_RUNNING=true
+    # Privileged mode may be needed for ADB
+    privileged: false
+    # Keep container running
+    command: /app/scripts/entrypoint.sh
+

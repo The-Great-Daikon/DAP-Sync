@@ -1,0 +1,27 @@
+# Custom sync rules and filters
+playlist_mappings:
+  # Map MusicBee playlist names to DAP playlist names
+  "Favorites": "Favorites"
+  "Recently Added": "Recent"
+
+# File path transformations
+path_transformations:
+  # Remove or replace path segments
+  remove_prefix: "/music/library"
+  # Normalize separators (unix/windows)
+  normalize_separators: true
+
+# Sync filters
+filters:
+  # Skip files matching these patterns
+  skip_patterns:
+    - "*.tmp"
+    - ".DS_Store"
+    - "Thumbs.db"
+  
+  # Minimum file size (bytes)
+  min_file_size: 1024
+  
+  # Maximum file size (bytes, 0 = unlimited)
+  max_file_size: 0
+
